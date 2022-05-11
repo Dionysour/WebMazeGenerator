@@ -1,0 +1,121 @@
+
+<style>
+        body {
+            background-color: gray;
+        }
+
+        .my_form {
+            float: left;
+            width: 20%;
+        }
+
+        img {
+            width: 47%;
+            float: left;
+        }
+
+        .my_form_radio span {
+            margin-bottom: 10px;
+        }
+
+        .my_form span {
+            margin-bottom: 10px;
+        }
+
+        .my_form form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .my_form input[type=number] {
+            width: 100px;
+            border: 2px solid;
+            border-radius: 5px;
+        }
+
+        .my_form input[type=submit] {
+            width: 100px;
+            border: 2px solid;
+            border-radius: 5px;
+        }
+
+        .my_radio {
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+
+        .my_radio input[type=radio] {
+            display: none;
+        }
+
+        .my_radio label {
+            display: inline-block;
+            cursor: pointer;
+            padding: 3px 20px;
+            line-height: 10px;
+            border: 2px solid #999;
+            border-radius: 6px;
+            user-select: none;
+        }
+
+        .my_radio input[type=radio]:checked + label {
+            background: #4f72f5;
+        }
+
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MazeGenerator</title>
+</head>
+<body>
+    <h1>Params</h1>
+
+    <div class="my_form">
+        <form action="/" method="POST">
+            <span>
+                <input type="number" name="radius" id="radius" value={{rad}}>
+                <label for="radius">Radius</label>
+            </span>
+
+            <span>
+                <input type="number" name="cell_size" id="cell_size" value={{cell_size}}>
+                <label for="cell_size">Cell size</label>
+            </span>
+
+            <span>
+                <input type="number" name="wall_width" id="wall_width" value={{wall_width}}>
+                <label for="wall_width">Wall width</label>
+            </span>
+
+            {% if gen == 'DFS' %}
+            <div class="my_radio">
+                <input type="radio" name="generator" value="DFS" id="dfs" checked>
+                <label for="dfs" >DFS</label>
+            </div>
+
+            <div class="my_radio">
+                <input type="radio" name="generator" value="Prims" id="prim">
+                <label for="prim" >Prim</label>
+            </div>
+            {% else %}
+
+            <div class="my_radio">
+                <input type="radio" name="generator" value="DFS" id="dfs">
+                <label for="dfs" >DFS</label>
+            </div>
+
+            <div class="my_radio">
+                <input type="radio" name="generator" value="Prims" id="prim" checked>
+                <label for="prim" >Prim</label>
+            </div>
+            {% endif%}
+
+            <input type="submit" value="Generate">
+        </form>
+    </div>
+    <img src="../static/maze.png" alt="Maze">
+</body>
+</html>
